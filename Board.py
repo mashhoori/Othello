@@ -13,7 +13,8 @@ class Board:
             self._board[i][j] = value
 
     def ShowBoard(self):
-        print(self._board)     
+        print(self._board)    
+        print('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
         
     def GetCount(self):
         c1 = np.sum(np.equal(self._board, 1))
@@ -116,6 +117,8 @@ class Board:
              
         if(self._board[i][j+1] == opponent):
             for k in range(j+2, 8):
+                if(self._board[i][k] == 0):
+                    return False
                 if(self._board[i][k] == player):
                     return True  
                     
@@ -129,6 +132,8 @@ class Board:
              
         if(self._board[i][j-1] == opponent):
             for k in range(j-2, -1, -1):
+                if(self._board[i][k] == 0):
+                    return False
                 if(self._board[i][k] == player):
                     return True  
                     
@@ -142,6 +147,8 @@ class Board:
              
         if(self._board[i-1][j] == opponent):
             for k in range(i-2, -1, -1):
+                if(self._board[k][j] == 0):
+                    return False 
                 if(self._board[k][j] == player):
                     return True  
                     
@@ -156,6 +163,8 @@ class Board:
              
         if(self._board[i+1][j] == opponent):
             for k in range(i+2, 8):
+                if(self._board[k][j] == 0):
+                    return False                    
                 if(self._board[k][j] == player):
                     return True  
                     
@@ -170,6 +179,8 @@ class Board:
         num = np.min([i-2, 6-j])
         if(self._board[i-1][j+1] == opponent):
             for k in range(2, 2+num):
+                if(self._board[i-k][j+k] == 0):
+                    return False                    
                 if(self._board[i-k][j+k] == player):
                     return True  
                     
@@ -184,6 +195,8 @@ class Board:
         num = np.min([i-2, j-2])
         if(self._board[i-1][j-1] == opponent):
             for k in range(2, 2+num):
+                if(self._board[i-k][j-k] == 0):
+                    return False
                 if(self._board[i-k][j-k] == player):
                     return True  
                     
@@ -198,6 +211,8 @@ class Board:
         num = np.min([6-i, 6-j])
         if(self._board[i+1][j+1] == opponent):
             for k in range(2, 2+num):
+                if(self._board[i+k][j+k] == 0):
+                    return False
                 if(self._board[i+k][j+k] == player):
                     return True  
                     
@@ -212,6 +227,8 @@ class Board:
         num = np.min([ 6-i, j-2])
         if(self._board[i+1][j-1] == opponent):
             for k in range(2, 2+num):
+                if(self._board[i+k][j-k] == 0):
+                    return False
                 if(self._board[i+k][j-k] == player):
                     return True  
                     

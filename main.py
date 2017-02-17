@@ -14,7 +14,7 @@ from Players import RandomPlayer, GreedyPlayer
 
 def Play(i, players):    
     oth = Othello(players)
-    oth.StartGame( startByFirst = bool(i%2) )            
+    oth.StartGame( startByFirst = bool(i%2), showBoard=True )            
     result = oth.board.GetCount()
     if(result[0] > result[1]): return 1
     elif(result[0] < result[1]): return -1
@@ -22,7 +22,7 @@ def Play(i, players):
         
 ##############################################################
 if __name__ == '__main__':    
-    numGames = 10
+    numGames = 1
     start = timer()
 
     players = [GreedyPlayer(1), RandomPlayer(2)]
@@ -30,15 +30,15 @@ if __name__ == '__main__':
 ##  Multi-Process Version  
 ##  This version can only be run from command promt
 ##
-    num_cores = multiprocessing.cpu_count() 
-    results = Parallel(n_jobs=num_cores)(delayed(Play)(i, players) for i in range(numGames))
-    results = np.array(results)
+#    num_cores = multiprocessing.cpu_count() 
+#    results = Parallel(n_jobs=num_cores)(delayed(Play)(i, players) for i in range(numGames))
+#    results = np.array(results)
 ###############################################################
 
 ##    Single-Process Version    
-#    results = [0] * numGames
-#    for i in range( numGames):        
-#        results[i] = Play(i, players)      
+    results = [0] * numGames
+    for i in range( numGames):        
+        results[i] = Play(i, players)      
               
 ###############################################################
     
